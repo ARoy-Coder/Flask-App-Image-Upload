@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Image Upload</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts - Montserrat for headings and Open Sans for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f9f9f9; /* Light gray background */
+            font-family: 'Open Sans', sans-serif;
+            color: #333; /* Dark gray text color */
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff; /* White container background */
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+        }
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: #0056b3; /* Dark blue heading color */
+        }
+        .form-group {
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            background-color: #ff6f61; /* Coral red primary button */
+            border-color: #ff6f61;
+            color: #fff; /* White text color */
+            font-weight: 600; /* Bold text */
+        }
+        .btn-primary:hover {
+            background-color: #e36054; /* Darker red on hover */
+            border-color: #e36054;
+        }
+        .image-container {
+            margin-top: 30px;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 300px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Light shadow for images */
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Images</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="POST" enctype="multipart/form-data" action="/upload">
+                    <div class="form-group">
+                        <input type="file" name="image" accept="image/*" class="form-control-file" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Upload</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h2>Uploaded Images</h2>
+                <div class="image-container">
+                    {% if images %}
+                        {% for image in images %}
+                            <img src="{{ image }}" class="img-fluid">
+                        {% endfor %}
+                    {% else %}
+                        <p>No images uploaded yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
